@@ -73,8 +73,8 @@ GRAPHQL_AUTH = {
     'REGISTER_MUTATION_FIELDS_OPTIONAL': [],
     'UPDATE_MUTATION_FIELDS': ['email', 'user_type'],
     'UPDATE_MUTATION_FIELDS_OPTIONAL': [],
-    'SEND_ACTIVATION_EMAIL': True,
-    'ALLOW_LOGIN_NOT_VERIFIED': False,
+    'SEND_ACTIVATION_EMAIL': False,
+    'ALLOW_LOGIN_NOT_VERIFIED': True,
     'ALLOW_PASSWORDLESS_REGISTRATION': False,
     'ALLOW_PASSWORD_RESET': True,
     'ALLOW_PASSWORD_CHANGE': True,
@@ -85,6 +85,9 @@ GRAPHQL_JWT = {
         "graphql_auth.mutations.Register",
         "graphql_auth.mutations.VerifyAccount",
         "graphql_auth.mutations.ObtainJSONWebToken",
+        "graphql_auth.mutations.VerifyToken",
+        "graphql_auth.mutations.RefreshToken",
+        "graphql_auth.mutations.RevokeToken",
     ],
     "JWT_VERIFY_EXPIRATION": True, # affirm that the jwt token will expire
     "JWT_EXPIRATION_DELTA": timedelta(minutes=5),
@@ -164,7 +167,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'uploads'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

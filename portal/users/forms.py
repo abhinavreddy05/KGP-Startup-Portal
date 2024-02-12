@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-
-from .models import CustomUser
+from django import forms
+from .models import CustomUser, StartupModel, MentorModel
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -15,3 +15,15 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
         fields = ("email",)
+
+class StartupForm(forms.ModelForm):
+    class Meta:
+        model = StartupModel
+        fields = '__all__'
+        exclude = ['user', 'verified']
+
+class MentorForm(forms.ModelForm):
+    class Meta:
+        model = MentorModel
+        fields = '__all__'
+        exclude = ['user', 'verified']
